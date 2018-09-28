@@ -6,8 +6,9 @@
 </head>
 <body>
 <div class="container">
+    <br>
     <h3 class="text-center">Personel Listesi</h3>
-
+    <br>
     <table class="table table-hover table-bordered">
         <thead>
         <tr>
