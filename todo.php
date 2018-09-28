@@ -40,4 +40,46 @@ ccntroller dosyas icinde         $this->load->view('personel_liste');
 css ve js eklemelerinde base url kullanılacak     <link rel="stylesheet" href="<?php echo base_url('assets\css\bootstrap.css'); ?>">
 autoload helper içinde url olması lazım calısması için
 
+
+->
+model dosyasında db kullanımı
+$this->db->get('tablo_adı')->result(); burada result değeri diziden sadece sonucları cekip array olarak veriyor.
+    public function get_all(){
+        $result = $this->db->get('personel')->result();
+        return $result;
+    }
+
+-> kontollerde model dosyasının yüklenmes,  modelin controllerde cagrılması
+$this->load->model('Personel_model'); her fonksiyonda tek tek yazmamak icin classın contract içinde tetiklenir.
+
+  public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Personel_model');
+    }
+
+-> viewe kontolden data göndermek
+
+$this->load->model('Personel_model');
+$list= $this->Personel_model->get_all();
+$viewData['list']=$list;
+$this->load->view('personel_liste', $viewData);
+
+-> view de contollerden gelen değişken kullanılır.
+<?php foreach ($list as $row ){ ?>
+                <tr>
+                    <th scope="row"><?php echo $row->id; ?></th>
+                    .......
+                </tr>
+           <?php } ?>
+
+-> viewde link kullanımı
+link  controllerdeki fonksiyon ismiyle controllere gönderilir.
+ <a href="<?php echo base_url('personel/insert_form')?>" class="btn btn-success btn-sm">Yeni Ekle</a> <br><br>
+
+notlar yazılacak ....
+
+
+en son personel düzenle videosunda kaldım. :)
+
 */
