@@ -44,21 +44,55 @@ class Personel extends CI_Controller {
         if ($insert){
             echo "ekleme başarılı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
         } else{
-            echo "ekleme yapılamadıListeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+            echo "ekleme yapılamadı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
         }
 
     }
 
-    public function update(){
+    public function update_form($id){
+
+        $where=array('id' => $id);
+
+         $list = $this->Personel_model->get($where);
+         $viewData['list']=$list;
+       $this->load->view('personel_duzenle', $viewData);
+    }
+
+    public function update($id){
+
+        $where = array('id' => $id);
+        $data =array(
+            'personel_ad' => $this->input->post('personel_ad'),
+            'email'       => $this->input->post('email'),
+            'telefon'     => $this->input->post('telefon'),
+            'departman'  =>  $this->input->post('departman'),
+            'adres'      =>  $this->input->post('adres')
+        );
+
+        $update=$this->Personel_model->update($where, $data);
+
+        if ($update){
+            echo "Güncelleme başarılı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+        } else{
+            echo "Güncelleme yapılamadı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+        }
+    }
+
+    public function delete($id){
+
+        $where = array('id' => $id);
+
+       $this->Personel_model->delete($where);
+
+        redirect(base_url());
 
     }
 
-    public function delete(){
+    public function order($field, $order){
 
-    }
-
-    public function order(){
-
+       $list = $this->Personel_model->order_by($field, $order);
+        $viewData['list']=$list;
+        $this->load->view('personel_liste', $viewData);
     }
 
 

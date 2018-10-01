@@ -77,9 +77,33 @@ $this->load->view('personel_liste', $viewData);
 link  controllerdeki fonksiyon ismiyle controllere gönderilir.
  <a href="<?php echo base_url('personel/insert_form')?>" class="btn btn-success btn-sm">Yeni Ekle</a> <br><br>
 
-notlar yazılacak ....
+-> paremetre yakalamak
+örnegin düzenleme, update icin gelen id'yi alırken kontrole id ile gönderiyoruz.
+gelen parametre bir değere alınıyor, alınan değer bir array ile modele gönderiliyor.
+controller.:
+public function update($id){
 
+        $where = array('id' => $id);
+data = array();
+$update=$this->Personel_model->update($where, $data);
 
-en son personel düzenle videosunda kaldım. :)
+model.:
+  public function update($where, $data){
+        $update = $this->db->where($where)->update('personel',$data);
+        return $update;
+
+    }
+where parantezi icerisinde tırnak kullanımı yok.
+
+-> direct yonlendirme redirect(base_url());
+
+-> sıralama order_by()
+
+  public function order_by($field= 'id' , $order ='ASC'){
+        $result = $this->db->order_by($field, $order)->get('personel')->result();
+        return $result;
+
+    }
+
 
 */

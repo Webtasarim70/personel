@@ -14,11 +14,11 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Personel Adı <a href="#">[A-Z]</a><a href="#">[Z-A]</a></th>
-            <th scope="col">E-mail <a href="#">[A-Z]</a><a href="#">[Z-A]</a></th>
-            <th scope="col">Telefon <a href="#">[A-Z]</a><a href="#">[Z-A]</a></th>
-            <th scope="col">Departman<a href="#">[A-Z]</a><a href="#">[Z-A]</a></th>
-            <th scope="col">Adres<a href="#">[A-Z]</a><a href="#">[Z-A]</a></th>
+            <th scope="col">Personel Adı <a href="<?php echo base_url();?>personel/order/personel_ad/ASC">[A-Z]</a><a href="<?php echo base_url();?>personel/order/personel_ad/DESC">[Z-A]</a></th>
+            <th scope="col">E-mail <a href="<?php echo base_url();?>personel/order/email/ASC">[A-Z]</a><a href="<?php echo base_url();?>personel/order/email/DESC">[Z-A]</a></th>
+            <th scope="col">Telefon <a href="<?php echo base_url();?>personel/order/telefon/ASC">[A-Z]</a><a href="<?php echo base_url();?>personel/order/telefon/DESC">[Z-A]</a></th>
+            <th scope="col">Departman<a href="<?php echo base_url();?>personel/order/departman/ASC">[A-Z]</a><a href="<?php echo base_url();?>personel/order/departman/DESC">[Z-A]</a></th>
+            <th scope="col">Adres<a href="<?php echo base_url();?>personel/order/adres/ASC">[A-Z]</a><a href="<?php echo base_url();?>personel/order/adres/DESC">[Z-A]</a></th>
             <th scope="col">İşlemler</th>
         </tr>
         </thead>
@@ -32,8 +32,8 @@
                     <th scope="row"><?php echo $row->departman; ?></th>
                     <th scope="row"><?php echo $row->adres; ?></th>
                     <td>
-                        <a href="#" class="btn btn-primary btn-sm"> Düzenle </a>
-                        <a href="#" class="btn btn-danger btn-sm"> Sil </a>
+                        <a href="<?php echo base_url('personel/update_form/'); echo $row->id; ?>" class="btn btn-primary btn-sm"> Düzenle </a>
+                        <a href="<?php echo base_url('personel/delete/'); echo $row->id; ?>" class="btn btn-danger btn-sm"> Sil </a>
 
                     </td>
                 </tr>
