@@ -12,7 +12,7 @@
         <br>
         <h3 class="text-center">Personel Ekle</h3>
         <br>
-        <form action="<?php echo base_url('personel/insert'); ?>" method="post">
+        <form action="<?php echo base_url('personel/insert'); ?>" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="">Personelin Adı</label>
@@ -34,6 +34,12 @@
                 <label for="">Adres</label>
                 <input type="text" class="form-control" name="adres">
             </div>
+            <div class="form-group">
+                <label for="">Personelin Resmi</label>
+                <input type="file" class="form-control" name="img_id">
+            </div>
+
+
             <button type="submit" class="btn btn-success btn-sm">Kaydet</button>
             <a href="<?php echo base_url()?>" class="btn btn-danger btn-sm">İptal</a>
 

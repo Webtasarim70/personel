@@ -32,20 +32,41 @@ class Personel extends CI_Controller {
         $depatman       = $this->input->post('departman');
         $adres          = $this->input->post('adres');
 
-            $data =array(
-              'personel_ad' => $personel_ad,
-              'email'       => $email,
-              'telefon'     =>$telefon,
-              'departman'  =>$depatman,
-              'adres'      =>$adres
-            );
-        $insert = $this->Personel_model->insert($data);
+        $img=$_FILES['img_id']['name'];
 
-        if ($insert){
-            echo "ekleme başarılı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
-        } else{
-            echo "ekleme yapılamadı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+        if ($personel_ad && $email && $telefon && $depatman && $adres && $img){
+            $config['upload_path']   ='uploads/';
+            $config['allowed_types'] ='gif|jpg|png|jpeg';
+            $this->load->library('upload',$config);
+
+            $img_id=$this->upload->data('file_name');
+            if ($this->upload->do_upload('img_id')){
+                //basarılı ise
+                $data =array(
+                    'personel_ad' => $personel_ad,
+                    'email'       => $email,
+                    'telefon'     =>$telefon,
+                    'departman'  =>$depatman,
+                    'adres'      =>$adres,
+                    'img_id'    =>$img_id
+
+                );
+                $insert = $this->Personel_model->insert($data);
+                if ($insert){
+                    echo "ekleme başarılı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+                } else{
+                    echo "ekleme yapılamadı. Listeye Dönmek için  <a  href='". base_url() ."'>Tıklayınız </a>";
+                }
+            }else{
+                echo 'bir sorun oluştu';
+            }
+        }else{
+            echo 'bir seyler boş bırakılmış';
         }
+
+
+
+
 
     }
 
