@@ -14,7 +14,7 @@
         <br>
 
 
-        <form action="<?php echo base_url('personel/update/'); echo $list->id; ?>" method="post">
+        <form action="<?php echo base_url('personel/update/'); echo $list->id; ?>" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="">Personelin Adı</label>
@@ -35,6 +35,11 @@
             <div class="form-group">
                 <label for="">Adres</label>
                 <input type="text" class="form-control" name="adres" value="<?php echo $list->adres; ?>">
+            </div>
+            <div class="form-group">
+                <label for="">Personelin Resmi</label>
+                <img  style="width: 50px" src="<?php echo base_url('uploads/'); echo $list->img_id;?>" alt="">
+                <input type="file" class="form-control" name="img_id">
             </div>
             <button type="submit" class="btn btn-success btn-sm">Kaydet</button>
             <a href="<?php echo base_url()?>" class="btn btn-danger btn-sm">İptal</a>
